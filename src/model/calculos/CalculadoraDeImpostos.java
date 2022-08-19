@@ -11,17 +11,8 @@ import static model.enuns.TipoImposto.ICMS;
 
 public class CalculadoraDeImpostos {
 
-    public BigDecimal calcularImpostos(Orcamento orcamento, TipoImposto tipoImposto){
-
-        switch(tipoImposto){
-            case ICMS:
-                return orcamento.getValorOrcamento().multiply(new BigDecimal(0.1));
-
-            case INSS:
-                return orcamento.getValorOrcamento().multiply((new BigDecimal(0.06)));
-
-            default:
-                return BigDecimal.ZERO;
-        }
+    //Este método chama tanto o INSS quanto o ICMS atraves da interface
+    public BigDecimal calcularImpostos(Orcamento orcamento, Imposto imposto){
+        return imposto.calcular(orcamento);
     }
 }
